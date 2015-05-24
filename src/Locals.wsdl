@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://guioSWWeb/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="ProvaService" targetNamespace="http://guioSWWeb/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://guioSWWeb/" elementFormDefault="unqualified" targetNamespace="http://guioSWWeb/" version="1.0">
+
+  <xs:element name="altaLocal" type="tns:altaLocal"/>
+
+  <xs:element name="altaLocalResponse" type="tns:altaLocalResponse"/>
+
+  <xs:element name="baixaLocal" type="tns:baixaLocal"/>
+
+  <xs:element name="baixaLocalResponse" type="tns:baixaLocalResponse"/>
+
+  <xs:element name="llistarLocals" type="tns:llistarLocals"/>
+
+  <xs:element name="llistarLocalsResponse" type="tns:llistarLocalsResponse"/>
+
+  <xs:element name="verificarLocal" type="tns:verificarLocal"/>
+
+  <xs:element name="verificarLocalResponse" type="tns:verificarLocalResponse"/>
+
+  <xs:complexType name="altaLocal">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:localAccessibilitatDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="localAccessibilitatDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="local" type="tns:local"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="lAccessibilitat" nillable="true" type="tns:accessibilitat"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="local">
+    <xs:sequence>
+      <xs:element name="codiCarrer" type="xs:int"/>
+      <xs:element name="codiLocal" type="xs:int"/>
+      <xs:element name="codiTipoLocal" type="xs:int"/>
+      <xs:element minOccurs="0" name="nomCarrer" type="xs:string"/>
+      <xs:element minOccurs="0" name="nomLocal" type="xs:string"/>
+      <xs:element minOccurs="0" name="nomVia" type="xs:string"/>
+      <xs:element name="numero" type="xs:int"/>
+      <xs:element minOccurs="0" name="observacions" type="xs:string"/>
+      <xs:element name="verificat" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="accessibilitat">
+    <xs:sequence>
+      <xs:element name="codiAccessibilitat" type="xs:int"/>
+      <xs:element name="codiCaracteristica" type="xs:int"/>
+      <xs:element name="codiLocal" type="xs:int"/>
+      <xs:element name="codiNivell" type="xs:int"/>
+      <xs:element name="valor" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="altaLocalResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="verificarLocal">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:local"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="verificarLocalResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="baixaLocal">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:local"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="baixaLocalResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="llistarLocals">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:localAccessibilitatDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="llistarLocalsResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:localAccessibilitatDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="llistarLocalsResponse">
+    <wsdl:part element="tns:llistarLocalsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="baixaLocalResponse">
+    <wsdl:part element="tns:baixaLocalResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="verificarLocalResponse">
+    <wsdl:part element="tns:verificarLocalResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="verificarLocal">
+    <wsdl:part element="tns:verificarLocal" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="altaLocalResponse">
+    <wsdl:part element="tns:altaLocalResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="altaLocal">
+    <wsdl:part element="tns:altaLocal" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="baixaLocal">
+    <wsdl:part element="tns:baixaLocal" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="llistarLocals">
+    <wsdl:part element="tns:llistarLocals" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Prova">
+    <wsdl:operation name="altaLocal">
+      <wsdl:input message="tns:altaLocal" name="altaLocal">
+    </wsdl:input>
+      <wsdl:output message="tns:altaLocalResponse" name="altaLocalResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verificarLocal">
+      <wsdl:input message="tns:verificarLocal" name="verificarLocal">
+    </wsdl:input>
+      <wsdl:output message="tns:verificarLocalResponse" name="verificarLocalResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="baixaLocal">
+      <wsdl:input message="tns:baixaLocal" name="baixaLocal">
+    </wsdl:input>
+      <wsdl:output message="tns:baixaLocalResponse" name="baixaLocalResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="llistarLocals">
+      <wsdl:input message="tns:llistarLocals" name="llistarLocals">
+    </wsdl:input>
+      <wsdl:output message="tns:llistarLocalsResponse" name="llistarLocalsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProvaServiceSoapBinding" type="tns:Prova">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="altaLocal">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="altaLocal">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="altaLocalResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="baixaLocal">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="baixaLocal">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="baixaLocalResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verificarLocal">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="verificarLocal">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="verificarLocalResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="llistarLocals">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="llistarLocals">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="llistarLocalsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProvaService">
+    <wsdl:port binding="tns:ProvaServiceSoapBinding" name="ProvaPort">
+      <soap:address location="http://localhost:8080/guioSWWeb/Prova"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
