@@ -25,12 +25,12 @@ public class LocalsService {
 		AltaLocalResponse response = (AltaLocalResponse)webServiceTemplate.marshalSendAndReceive(alta);		
 		return response.toString();	
 	}
-	
+	/*
 	public String verificar(Local object){
 		VerificarLocal verificar = new ObjectFactory().createVerificarLocal();
 		verificar.setArg0(object);
 		VerificarLocalResponse response = (VerificarLocalResponse)webServiceTemplate.marshalSendAndReceive(verificar);
 		return response.toString();
-	}
+	}*/
 
 }

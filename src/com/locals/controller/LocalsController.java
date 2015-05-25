@@ -82,26 +82,32 @@ public class LocalsController {
     
     @RequestMapping(value = "/alta")
     public @ResponseBody
-    String setLocal(@RequestParam("nomLocal") String nomLocal) {
+    String setLocal(@RequestParam("nomLocal") String nomLocal,@RequestParam("nomVia") String via,
+    	@RequestParam("nomCarrer") String carrer,@RequestParam("numero") String numero,
+    	@RequestParam("observacions") String obs) {
     	System.out.println("[DEBUG] Local name: "+ nomLocal);
+    	System.out.println("[DEBUG] via: "+ via);
+    	System.out.println("[DEBUG] carrer: "+ carrer)  	;
     	LocalAccessibilitatDTO dtoObject = new LocalAccessibilitatDTO();
     	
     	Local local = new Local();
     	local.setNomLocal(nomLocal);
     	dtoObject.setLocal(local);
     	
-    	return service.altaLocal(dtoObject);
+    	return "OK";//service.altaLocal(dtoObject);
     }
     
     @RequestMapping(value = "/verificar")
     public @ResponseBody
-    String verificar(@RequestParam("nomLocal") String nomLocal) {
+    String verificar(@RequestParam("nomLocal") String nomLocal,@RequestParam("nomVia") String via,
+    		@RequestParam("nomCarrer") String carrer) {
     	System.out.println("[DEBUG] Local name: "+ nomLocal);
-    	
+    	System.out.println("[DEBUG] via: "+ via);
+    	System.out.println("[DEBUG] carrer: "+ carrer);
     	Local local = new Local();
     	local.setNomLocal(nomLocal);
     	
-    	return service.verificar(local);
+    	return "OK";//service.verificar(local);
     }
     
     
