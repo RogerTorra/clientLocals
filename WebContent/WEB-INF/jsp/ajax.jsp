@@ -83,8 +83,11 @@ body {
                         console.log(inputValues);
                         if(inputValues.length>5){
                 		content += $('#'+inputValues).parent().parent().children()[0].outerHTML;
-                		content += "<label>: "+ inputValues.charAt(inputValues.length-1) +"</label><br/>"
-                		}else{
+                		//content += "<label>: "+ inputValues.charAt(inputValues.length-1) +"</label><br/>"
+                			for(i=0;i<inputValues.charAt(inputValues.length-1);i++){
+                				content += '<span class="glyphicon glyphicon-star" aria-hidden="true"></span>';
+                			}
+                	}else{
                         content += $('#'+inputValues).parent().children()[0].outerHTML +"<br/>";
                         }
                 })
