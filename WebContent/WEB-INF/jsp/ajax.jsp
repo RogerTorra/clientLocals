@@ -77,6 +77,18 @@ body {
             	$(".progress-bar").attr("style","width:100%");
                 launchBar();
                 $('#result').html(data);
+                var content = "";
+                $('#access label').each(function() {
+                        inputValues=$(this).attr("value");
+                        console.log(inputValues);
+                        if(inputValues.length>5){
+                		content += $('#'+inputValues).parent().parent().children()[0].outerHTML;
+                		content += "<label>: "+ inputValues.charAt(inputValues.length-1) +"</label><br/>"
+                		}else{
+                        content += $('#'+inputValues).parent().children()[0].outerHTML +"<br/>";
+                        }
+                })
+                $('#result2').html(content);
             }
         });
     };
@@ -164,20 +176,20 @@ body {
 					      <div id="access1" class="panel-body">
 					      	<div class="form-group">
 						      	<label>ESCALA O ESGLAÓ ENTRADA (MÉS DE 5 CM)</label>
-						      	<input type="checkbox" id="ac0" value="0-0-1">
+						      	<input type="checkbox" id="0-0-1" value="0-0-1">
 						      	</div>
 						      <div class="form-group">
 						      	<label>AEXISTÈNCIA DE BARANA A LA RAMPA</label>
-						      	<input type="checkbox" id="ac1"  value="0-1-1">
+						      	<input type="checkbox" id="0-1-1"  value="0-1-1">
 						      	</div>
 						      	<div class="form-group">
 							      	<label>LA PORTA PERMET L'ENTRADA DE CADIRA DE RODES</label>
-							      	<input type="checkbox" id="ac2"  value="0-2-1">
+							      	<input type="checkbox" id="0-2-1"  value="0-2-1">
 								
 						      	</div>
 						      	<div class="form-group">
 							      	<label>PERMET LA VISIBILITAT DE L'ESPAI INTERIOR DES DE L'EXTERIOR</label>
-							      	<input type="checkbox" id="ac3"  value="0-3-1">
+							      	<input type="checkbox" id="0-3-1"  value="0-3-1">
 								
 						      	</div>
 					      </div>
@@ -196,33 +208,33 @@ body {
 					      	<div class="form-group">
 						      	<label>ATENCIÓ DEL SERVEI A LES TAULES</label>
 						      	<label class="radio-inline">
-								  <input name="inlineRadioOptions" type="radio" id="ac5" " value="1-5-2-1"> 1
+								  <input name="inlineRadioOptions" type="radio" id="1-5-2-1" " value="1-5-2-1"> 1
 								</label>
 								<label class="radio-inline">
-								  <input name="inlineRadioOptions" type="radio" id="ac5" value="1-5-2-2"> 2
+								  <input name="inlineRadioOptions" type="radio" id="1-5-2-2" value="1-5-2-2"> 2
 								</label>
 								<label class="radio-inline">
-								  <input name="inlineRadioOptions" type="radio" id="ac5" value="1-5-2-3"> 3
+								  <input name="inlineRadioOptions" type="radio" id="1-5-2-3" value="1-5-2-3"> 3
 								</label>
 								<label class="radio-inline">
-								  <input name="inlineRadioOptions" type="radio" id="ac5" value="1-5-2-4"> 4
+								  <input name="inlineRadioOptions" type="radio" id="1-5-2-4" value="1-5-2-4"> 4
 								</label>
 								<label class="checkbox-inline">
-								  <input name="inlineRadioOptions" type="radio" id="ac5" value="1-5-2-5"> 5
+								  <input name="inlineRadioOptions" type="radio" id="1-5-2-5" value="1-5-2-5"> 5
 								</label>
 						      </div>
 						      <div class="form-group">
 						      	<label>BONA SENYALITZACIÓ DE LES MESURES DE SEGURETAT</label>
-						      	<input type="checkbox" value="1-6-1">
+						      	<input type="checkbox" id="1-6-1" value="1-6-1">
 						      	</div>
 						      	<div class="form-group">
 							      	<label>CARTA BRAÏLLE, AMPLIACIÓ DE LA LLETRA, RELLEU</label>
-							      	<input type="checkbox" value="1-7-1">
+							      	<input type="checkbox" id="1-7-1" value="1-7-1">
 								
 						      	</div>
 						      	<div class="form-group">
 							      	<label>CARTA EN LLENGUATGE SIMPLE, SIMBOLOGIA, ESCRITA EN DUES LLENGÜES</label>
-							      	<input type="checkbox" value="1-8-1">
+							      	<input type="checkbox" id="1-8-1" value="1-8-1">
 									
 						      	</div>
 					      </div>

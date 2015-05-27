@@ -88,37 +88,39 @@ public class LocalsController {
     String getList(@RequestParam String id) {
     	
     	List<LocalAccessibilitatDTO> llistaLocals;
-        try{
-        	llistaLocals = service.getListLocals();
-        	if(llistaLocals == null){
-        		llistaLocals = serviceMock.getListLocals();
-        	}
-        }catch(Exception exception){
-        	llistaLocals = serviceMock.getListLocals();
-        }
+    	List<Accessibilitat> llistaA;
+    	
+        	llistaLocals = serviceMock.getListLocals(id);
         
-        String result = "<table class='table table-hover table-striped'>";
+        String result = "<div id='access'>";
         System.out.println("[DEBUG] Creating table of "+llistaLocals.size()+ " locals");
+ 
        
-        /* Iterator<LocalAccessibilitatDTO> localIter =  llistaLocals.iterator();
-        while(localIter.hasNext()){
-        	
-        	result += "<tr><td>" + localIter.next().getLocal().getNomVia()+ " " 
-        			+ localIter.next().getLocal().getNomCarrer() + ", " + localIter.next().getLocal().getNumero()+"</td><td>" +
-        			localIter.next().getLocal().getNomLocal() + "</td></tr>";
-        }
-        
         for (int i = 0; i < llistaLocals.size() ; i++){
-        	System.out.println("[DEBUG] "+i);
-        	System.out.println("[DEBUG] "+llistaLocals.get(i).toString());
-        	result += "<tr><td><a onclick='list("+ llistaLocals.get(i).getLocal().getCodiLocal() + ")" + "'>"
-        			+ "<span class='glyphicon glyphicon-search' aria-hidden='true'></span></a></td><td>" 
+        	
+        	result += "<table class=''><tr><td>" 
         			+ llistaLocals.get(i).getLocal().getNomVia()+ " " 
-        			+ llistaLocals.get(i).getLocal().getNomCarrer() + ", " + llistaLocals.get(i).getLocal().getNumero()+"</td><td>" +
-        			llistaLocals.get(i).getLocal().getNomLocal() + "</td></tr>";
+        			+ llistaLocals.get(i).getLocal().getNomCarrer() + ", " + llistaLocals.get(i).getLocal().getNumero()+"</td></tr><tr><td><h3>" +
+        			llistaLocals.get(i).getLocal().getNomLocal() + "</h3></td></tr>";
+        	result +="</table><div class='form-group' id='result2'></div>";
+        	
+        		llistaA=llistaLocals.get(i).getLAccessibilitat();
+        		for(int j=0;j<llistaA.size();j++){
+        			String map ="";
+        			map =  Integer.toString(llistaA.get(j).getCodiAccessibilitat()) + "-"
+        					+ Integer.toString(llistaA.get(j).getCodiCaracteristica()) + "-";
+        			if(llistaA.get(j).getCodiNivell()==1){
+        				map += "1";
+        			}else{
+        				map += Integer.toString(llistaA.get(j).getCodiNivell()) + "-"+
+        						Integer.toString(llistaA.get(j).getValor());
+        			}
+        			result += "<label class='arrayResult' style='display:none' value='"+ map + "'></label>";			
+        		}
         			
         }
-        result += "</table>";*/
+        
+        result +="</div>";
         
         System.out.println("[DEBUG]  Message from LocalsController Controller.. END");
         return result;
