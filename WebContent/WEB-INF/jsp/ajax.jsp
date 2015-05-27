@@ -39,11 +39,13 @@ body {
     	 }, 2000);
     };
     function altaLocal(){
-    	 var data = {"nomLocal":typeof $("#name").val() == 'undefined'?"caca":$("#name").val(),
+    	var test = getAccess();
+    	 var data = {"nomLocal":$("#name").val() ,
     			 "nomVia":typeof $("#via option:selected").val() == 'undefined'?"av":$("#via option:selected").val(),
-    			 "nomCarrer":typeof $("#carrer").val() == 'undefined'?"caca":$("#carrer").val(),	
-    			 "numero":typeof $("#numero").val() == 'undefined'?"caca":$("#numero").val(),
-    			 "observacions":typeof $("#observacions").val() == 'undefined'?"caca":$("#observacions").val(),
+    			 "nomCarrer":$("#carrer").val(),	
+    			 "numero":$("#numero").val(),
+    			 "observacions":$("#observacions").val(),
+    			 "ac":test,
     	 };
     	 console.log("[DEBUG] alta:",data);
     	 $.ajax({
@@ -56,6 +58,17 @@ body {
 
     	
     };
+    function getAccess(){
+    	var inputValues = "";
+        $('#access1 input').each(function() {
+            var type = $(this).attr("type");
+            if ((type == "checkbox" || type == "radio") && this.checked) {
+                inputValues=inputValues+$(this).val()+",";
+            }
+        })
+        console.log(inputValues);
+    	return inputValues;
+    }
 
 </script>
 
@@ -132,47 +145,29 @@ body {
 					    <div class="panel-heading" role="tab" id="headingOne">
 					      <h4 class="panel-title">
 					        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-					          Accesibilitat1
+					          ACCÉS IMMEDIAT A L''ESTABLIMENT
 					        </a>
 					      </h4>
 					    </div>
 					    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-					      <div class="panel-body">
+					      <div id="access1" class="panel-body">
 					      	<div class="form-group">
-						      	<label>Abcde efgh ij klmnopq </label>
-						      	<label class="radio-inline">
-								  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
-								</label>
-								<label class="radio-inline">
-								  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
-								</label>
-								<label class="radio-inline">
-								  <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
-								</label>
-								      	<label class="radio-inline">
-								  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 4
-								</label>
-								<label class="radio-inline">
-								  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 5
-								</label>
+						      	<label>ESCALA O ESGLAÓ ENTRADA (MÉS DE 5 CM)</label>
+						      	<input type="checkbox" id="ac0" value="0-0-1">
 						      	</div>
 						      <div class="form-group">
-						      	<label>Abcde efgh ij klmnopq 2</label>
-						      	<label class="radio-inline">
-								  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
-								</label>
-								<label class="radio-inline">
-								  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
-								</label>
-								<label class="radio-inline">
-								  <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
-								</label>
-								      	<label class="radio-inline">
-								  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 4
-								</label>
-								<label class="radio-inline">
-								  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 5
-								</label>
+						      	<label>AEXISTÈNCIA DE BARANA A LA RAMPA</label>
+						      	<input type="checkbox" id="ac1"  value="0-1-1">
+						      	</div>
+						      	<div class="form-group">
+							      	<label>LA PORTA PERMET L'ENTRADA DE CADIRA DE RODES</label>
+							      	<input type="checkbox" id="ac2"  value="0-2-1">
+								
+						      	</div>
+						      	<div class="form-group">
+							      	<label>PERMET LA VISIBILITAT DE L'ESPAI INTERIOR DES DE L'EXTERIOR</label>
+							      	<input type="checkbox" id="ac3"  value="0-3-1">
+								
 						      	</div>
 					      </div>
 					    </div>
@@ -181,19 +176,72 @@ body {
 					    <div class="panel-heading" role="tab" id="headingTwo">
 					      <h4 class="panel-title">
 					        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-					          Accesibilitat2
+					          ATENCIÓ AL CLIENT
 					        </a>
 					      </h4>
 					    </div>
 					    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-					      <div class="panel-body">A</div>
+					      <div class="panel-body">
+					      	<div class="form-group">
+						      	<label>ATENCIÓ DEL SERVEI A LES TAULES</label>
+						      	<label class="checkbox-inline">
+								  <input type="checkbox" id="ac5" " value="1-5-2-1"> 1
+								</label>
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="ac5" value="1-5-2-2"> 2
+								</label>
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="ac5" value="1-5-2-3"> 3
+								</label>
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="ac5" value="1-5-2-4"> 4
+								</label>
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="ac5" value="1-5-2-5"> 5
+								</label>
+						      </div>
+						      <div class="form-group">
+						      	<label>AEXISTÈNCIA DE BARANA A LA RAMPA</label>
+						      	<input type="checkbox" value="0-1-1">
+						      	</div>
+						      	<div class="form-group">
+							      	<label>LA PORTA PERMET L'ENTRADA DE CADIRA DE RODES</label>
+							      	<input type="checkbox" value="0-2-1">
+								
+						      	</div>
+						      	<div class="form-group">
+							      	<label>PERMET LA VISIBILITAT DE L'ESPAI INTERIOR DES DE L'EXTERIOR</label>
+							      	<input type="checkbox" value="0-3-1">
+									<label class="checkbox-inline">
+									  <input type="checkbox" id="inlineCheckbox1" value="option1"> 1
+									</label>
+									<label class="checkbox-inline">
+									  <input type="checkbox" id="inlineCheckbox2" value="option2"> 2
+									</label>
+									<label class="checkbox-inline">
+									  <input type="checkbox" id="inlineCheckbox3" value="option3"> 3
+									</label>
+						      	</div>
+					      </div>
 					    </div>
 					  </div>
 					  <div class="panel panel-default">
 					    <div class="panel-heading" role="tab" id="headingThree">
 					      <h4 class="panel-title">
 					        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-					          Accesibilitat3
+					         ESPAI EXTERIOR A L''ESTABLIMENT
+					        </a>
+					      </h4>
+					    </div>
+					    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+					      <div class="panel-body">AAA</div>
+					    </div>
+					  </div>
+					   <div class="panel panel-default">
+					    <div class="panel-heading" role="tab" id="headingThree">
+					      <h4 class="panel-title">
+					        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					         INTERIOR DE L''ESTABLIMENT
 					        </a>
 					      </h4>
 					    </div>

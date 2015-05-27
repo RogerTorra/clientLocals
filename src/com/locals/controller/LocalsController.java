@@ -1,5 +1,6 @@
 package com.locals.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.locals.controller.wsdl.Accessibilitat;
 import com.locals.controller.wsdl.Local;
 import com.locals.controller.wsdl.LocalAccessibilitatDTO;
 import com.locals.controller.wsdl.LocalsService;
@@ -84,17 +86,45 @@ public class LocalsController {
     public @ResponseBody
     String setLocal(@RequestParam("nomLocal") String nomLocal,@RequestParam("nomVia") String via,
     	@RequestParam("nomCarrer") String carrer,@RequestParam("numero") String numero,
-    	@RequestParam("observacions") String obs) {
+    	@RequestParam("observacions") String obs,
+    	@RequestParam("ac") String ac) {
     	System.out.println("[DEBUG] Local name: "+ nomLocal);
     	System.out.println("[DEBUG] via: "+ via);
     	System.out.println("[DEBUG] carrer: "+ carrer)  	;
+    	System.out.println("[DEBUG] "+ac);
     	LocalAccessibilitatDTO dtoObject = new LocalAccessibilitatDTO();
     	
     	Local local = new Local();
     	local.setNomLocal(nomLocal);
+    	local.setNomVia(via);
+    	local.setCodiCarrer(1);
+    	local.setNumero(Integer.parseInt(numero));
+    	local.setObservacions(obs);
+    	local.setCodiTipoLocal(0);
+    	
     	dtoObject.setLocal(local);
     	
+    	setAcc(ac,dtoObject);
+    	System.out.println("[DEBUG] LOCAL:"+dtoObject.toString());
     	return "OK";//service.altaLocal(dtoObject);
+    }
+    public void setAcc(String ac,LocalAccessibilitatDTO dto){
+    		Accessibilitat acObject;
+    		String[] myArray = ac.split(",");
+    		for(String obj:myArray){
+    			System.out.println("[DEBUG] split accessibility:"+obj);
+    			String[] values = obj.split("-");
+    			acObject = new Accessibilitat();
+    				acObject.setCodiAccessibilitat(Integer.parseInt(values[0]));
+    				acObject.setCodiCaracteristica(Integer.parseInt(values[1]));
+    				acObject.setCodiNivell(Integer.parseInt(values[2]));
+    				if(values[2].equals("1")){
+    					acObject.setValor(1);
+    				}else{
+    					acObject.setValor(Integer.parseInt(values[3]));
+    				}
+    				dto.getLAccessibilitat().add(acObject);    		
+    			}
     }
     
     @RequestMapping(value = "/verificar")
