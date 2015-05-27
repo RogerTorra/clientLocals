@@ -41,7 +41,7 @@ public class LocalsController {
 
     @RequestMapping("/ajax")
     public ModelAndView helloAjaxTest() {
-        return new ModelAndView("ajax", "message", "Crunchify Spring MVC with Ajax and JQuery Demo..");
+        return new ModelAndView("ajax", "message", "LLISTAR LOCALS APP..");
     }
  
     @RequestMapping(value = "/ajaxtest", method = RequestMethod.GET)
@@ -70,7 +70,8 @@ public class LocalsController {
         for (int i = 0; i < llistaLocals.size() ; i++){
         	System.out.println("[DEBUG] "+i);
         	System.out.println("[DEBUG] "+llistaLocals.get(i).toString());
-        	result += "<tr><td><a href=''><span class='glyphicon glyphicon-search' aria-hidden='true'></span></a></td><td>" 
+        	result += "<tr><td><a onclick='list("+ llistaLocals.get(i).getLocal().getCodiLocal() + ")" + "'>"
+        			+ "<span class='glyphicon glyphicon-search' aria-hidden='true'></span></a></td><td>" 
         			+ llistaLocals.get(i).getLocal().getNomVia()+ " " 
         			+ llistaLocals.get(i).getLocal().getNomCarrer() + ", " + llistaLocals.get(i).getLocal().getNumero()+"</td><td>" +
         			llistaLocals.get(i).getLocal().getNomLocal() + "</td></tr>";
@@ -81,6 +82,48 @@ public class LocalsController {
         System.out.println("[DEBUG]  Message from LocalsController Controller.. END");
         return result;
     }
+    
+    @RequestMapping(value = "/ajaxlist", method = RequestMethod.GET)
+    public @ResponseBody
+    String getList(@RequestParam String id) {
+    	
+    	List<LocalAccessibilitatDTO> llistaLocals;
+        try{
+        	llistaLocals = service.getListLocals();
+        	if(llistaLocals == null){
+        		llistaLocals = serviceMock.getListLocals();
+        	}
+        }catch(Exception exception){
+        	llistaLocals = serviceMock.getListLocals();
+        }
+        
+        String result = "<table class='table table-hover table-striped'>";
+        System.out.println("[DEBUG] Creating table of "+llistaLocals.size()+ " locals");
+       
+        /* Iterator<LocalAccessibilitatDTO> localIter =  llistaLocals.iterator();
+        while(localIter.hasNext()){
+        	
+        	result += "<tr><td>" + localIter.next().getLocal().getNomVia()+ " " 
+        			+ localIter.next().getLocal().getNomCarrer() + ", " + localIter.next().getLocal().getNumero()+"</td><td>" +
+        			localIter.next().getLocal().getNomLocal() + "</td></tr>";
+        }
+        
+        for (int i = 0; i < llistaLocals.size() ; i++){
+        	System.out.println("[DEBUG] "+i);
+        	System.out.println("[DEBUG] "+llistaLocals.get(i).toString());
+        	result += "<tr><td><a onclick='list("+ llistaLocals.get(i).getLocal().getCodiLocal() + ")" + "'>"
+        			+ "<span class='glyphicon glyphicon-search' aria-hidden='true'></span></a></td><td>" 
+        			+ llistaLocals.get(i).getLocal().getNomVia()+ " " 
+        			+ llistaLocals.get(i).getLocal().getNomCarrer() + ", " + llistaLocals.get(i).getLocal().getNumero()+"</td><td>" +
+        			llistaLocals.get(i).getLocal().getNomLocal() + "</td></tr>";
+        			
+        }
+        result += "</table>";*/
+        
+        System.out.println("[DEBUG]  Message from LocalsController Controller.. END");
+        return result;
+    }
+    
     
     @RequestMapping(value = "/alta")
     public @ResponseBody

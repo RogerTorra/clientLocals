@@ -69,6 +69,17 @@ body {
         console.log(inputValues);
     	return inputValues;
     }
+    function list(id) {
+        $.ajax({
+            url : 'ajaxlist.html',
+            data:{"id":id},
+            success : function(data) {
+            	$(".progress-bar").attr("style","width:100%");
+                launchBar();
+                $('#result').html(data);
+            }
+        });
+    };
 
 </script>
 
@@ -181,46 +192,38 @@ body {
 					      </h4>
 					    </div>
 					    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-					      <div class="panel-body">
+					      <div id="access1" class="panel-body">
 					      	<div class="form-group">
 						      	<label>ATENCIÓ DEL SERVEI A LES TAULES</label>
-						      	<label class="checkbox-inline">
-								  <input type="checkbox" id="ac5" " value="1-5-2-1"> 1
+						      	<label class="radio-inline">
+								  <input name="inlineRadioOptions" type="radio" id="ac5" " value="1-5-2-1"> 1
+								</label>
+								<label class="radio-inline">
+								  <input name="inlineRadioOptions" type="radio" id="ac5" value="1-5-2-2"> 2
+								</label>
+								<label class="radio-inline">
+								  <input name="inlineRadioOptions" type="radio" id="ac5" value="1-5-2-3"> 3
+								</label>
+								<label class="radio-inline">
+								  <input name="inlineRadioOptions" type="radio" id="ac5" value="1-5-2-4"> 4
 								</label>
 								<label class="checkbox-inline">
-								  <input type="checkbox" id="ac5" value="1-5-2-2"> 2
-								</label>
-								<label class="checkbox-inline">
-								  <input type="checkbox" id="ac5" value="1-5-2-3"> 3
-								</label>
-								<label class="checkbox-inline">
-								  <input type="checkbox" id="ac5" value="1-5-2-4"> 4
-								</label>
-								<label class="checkbox-inline">
-								  <input type="checkbox" id="ac5" value="1-5-2-5"> 5
+								  <input name="inlineRadioOptions" type="radio" id="ac5" value="1-5-2-5"> 5
 								</label>
 						      </div>
 						      <div class="form-group">
-						      	<label>AEXISTÈNCIA DE BARANA A LA RAMPA</label>
-						      	<input type="checkbox" value="0-1-1">
+						      	<label>BONA SENYALITZACIÓ DE LES MESURES DE SEGURETAT</label>
+						      	<input type="checkbox" value="1-6-1">
 						      	</div>
 						      	<div class="form-group">
-							      	<label>LA PORTA PERMET L'ENTRADA DE CADIRA DE RODES</label>
-							      	<input type="checkbox" value="0-2-1">
+							      	<label>CARTA BRAÏLLE, AMPLIACIÓ DE LA LLETRA, RELLEU</label>
+							      	<input type="checkbox" value="1-7-1">
 								
 						      	</div>
 						      	<div class="form-group">
-							      	<label>PERMET LA VISIBILITAT DE L'ESPAI INTERIOR DES DE L'EXTERIOR</label>
-							      	<input type="checkbox" value="0-3-1">
-									<label class="checkbox-inline">
-									  <input type="checkbox" id="inlineCheckbox1" value="option1"> 1
-									</label>
-									<label class="checkbox-inline">
-									  <input type="checkbox" id="inlineCheckbox2" value="option2"> 2
-									</label>
-									<label class="checkbox-inline">
-									  <input type="checkbox" id="inlineCheckbox3" value="option3"> 3
-									</label>
+							      	<label>CARTA EN LLENGUATGE SIMPLE, SIMBOLOGIA, ESCRITA EN DUES LLENGÜES</label>
+							      	<input type="checkbox" value="1-8-1">
+									
 						      	</div>
 					      </div>
 					    </div>
